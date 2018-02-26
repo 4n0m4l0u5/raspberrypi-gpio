@@ -3,29 +3,31 @@ from tkinter import *
 import time
 import RPi.GPIO as GPIO
 
+# setup IO pins here, you will have to search for your specific boards GPIO pinout diagrams to find out the numbering system
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(7, GPIO.OUT)
 GPIO.setup(11, GPIO.OUT)
 GPIO.setup(13, GPIO.OUT)
 
 def turn_on():
-        print ("powering up amplifier...")
+        print ("turning on GPIO ")
         GPIO.output(7, True)
+# using the speep function as a delay, default unit here is in seconds
         time.sleep(.1)
         GPIO.output(11, True)
         time.sleep(5)
         GPIO.output(11, False)
         time.sleep(.1)
         GPIO.output(7, False)
-        print ("amp off...")
+        print ("turning off...")
 def gpio_cleanup():
         GPIO.cleanup()
-def laser_on():
-        print ("powering laser and VCO...")
-        GPIO.output(13, False)
 def laser_off():
+        print ("power down")
+        GPIO.output(13, False)
+def laser_on():
         GPIO.output(13, True)
-        print ("laser and VCO off...")
+        print ("power on")
 
 root = Tk()
 
@@ -41,12 +43,7 @@ button3.pack(side=TOP, padx=10, pady=10, ipadx=10, ipady=10)
 button4= Button(root, text="Turn on laser", command=laser_on)
 button4.pack(side=BOTTOM, padx=10, pady=10, ipadx=10, ipady=10)
 
-#labelText = StringVar()
-#labelText.set("IT'S ON!")
-#label1 = Label(root, textvariable=labelText, height=4)
-#label1.pack(side=LEFT)
-
-root.title("EMPower Tech. Inc.")
+root.title("Raspberry PI GPIO Example")
 root.geometry('500x300+200+200')
 
 root.mainloop()
