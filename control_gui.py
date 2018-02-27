@@ -3,7 +3,7 @@ from tkinter import *
 import time
 import RPi.GPIO as GPIO
 
-# setup IO pins here, you will have to search for your specific boards GPIO pinout diagrams to find out the numbering system
+# setup IO pins here, you will have to search for your specific boards GPIO pinout diagrams and "setmode" type to find out the numbering system
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(7, GPIO.OUT)
 GPIO.setup(11, GPIO.OUT)
